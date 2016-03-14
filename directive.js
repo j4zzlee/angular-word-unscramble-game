@@ -1,5 +1,5 @@
 angular.module('st2forget.word-unscramble-game', []).
-directive('WordUnscrambleGame', function () {
+directive('word-unscramble-game', function () {
 
     return {
         template: 'Hello World!!!'
