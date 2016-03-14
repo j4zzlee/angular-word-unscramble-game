@@ -1,5 +1,7 @@
 angular.module('word-unscramble-game', []).
 directive('WordUnscrambleGame', function () {
 
-    return 'Hello World!!!';
+    return {
+        template: 'Hello World!!!'
+    };
 });
