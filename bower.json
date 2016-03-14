@@ -1,6 +1,7 @@
 {
   "name": "angular-word-unscramble-game",
   "homepage": "https://github.com/st2forget/angular-word-unscramble-game",
+  "version": "0.0.1-beta1",
   "authors": [
     "st2forget <hoanggia.lh@gmail.com>"
   ],
