@@ -1,0 +1,30 @@
+{
+  "name": "angular-word-unscramble-game",
+  "homepage": "https://github.com/st2forget/angular-word-unscramble-game",
+  "authors": [
+    "st2forget <hoanggia.lh@gmail.com>"
+  ],
+  "description": "An English Word Unscramble Game",
+  "main": "directive.js",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0"
+  },
+  "_release": "b9e2ffde1d",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "b9e2ffde1d7565754124090424c98c16e4f1071d"
+  },
+  "_source": "git://github.com/st2forget/angular-word-unscramble-game.git",
+  "_target": "*",
+  "_originalSource": "st2forget/angular-word-unscramble-game"
+}

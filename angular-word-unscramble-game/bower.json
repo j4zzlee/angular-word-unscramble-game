@@ -1,0 +1,22 @@
+{
+  "name": "angular-word-unscramble-game",
+  "homepage": "https://github.com/st2forget/angular-word-unscramble-game",
+  "version": "0.0.1-beta1",
+  "authors": [
+    "st2forget <hoanggia.lh@gmail.com>"
+  ],
+  "description": "An English Word Unscramble Game",
+  "main": "directive.js",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0"
+  }
+}
