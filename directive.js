@@ -1,57 +1,93 @@
-angular.module('st2forget.word-unscramble-game', []).
+angular.module('st2forget.word-unscramble-game', ['ng-sortable']).
   directive('wordUnscrambleGame', function () {
+
+
+    var model = { //queston
+      Id: 1,
+      Statement: 'LOVE',
+      //Hint: ''
+      //Answers: [
+      //  {
+      //    Id: 1,
+      //  }
+      //]1
+    };
+
     var link = function ($scope, $element, $attrs){
+      // $element.on('click', function (e) {
+      //   e.stopPropagation();
+      // })
     };
 
     return {
       controllerAs  : 'wordUnscrambleGame',
       controller  : ['$attrs', '$scope', '$element', function ($attrs, $scope, $element) {
-        console.log('fuck')
 
-        $scope.directiveRootPath = $attrs.directiveRootPath;
+        $scope.data = model; //TODO: get data from api $.get(url, function () {})
+        $scope.dataSentence = 'This is an sentence';
+        $scope.gameType = $attrs.gameType;
 
-        $scope.draggableObjects = [
-          {name: 'one'},
-          {name: 'two'},
-          {name: 'three'}
-        ]
+        $scope.statusMessage = 'Let start'
 
-        $scope.onDropComplete = function (index, obj, evt) {
+        // Transform INPUT data to list of charracter with correct index
+        var charsArray = _.shuffle($scope.data.Statement.split($scope.gameType == 'word' ? '' : ' '));
+        console.log(charsArray);
+        $scope.draggableObjects = charsArray;
+
+        $scope.onDragOver = function (index, obj) {
+          console.log('Word drag over' + obj);
+        };
+
+        // Change position
+        $scope.onDropComplete = function (index, obj) {
+          console.log('Word: ' + obj + ' Move to index: ' + index);
+
+          //if (index = $scope.draggableObjects.length){
+          //  var otherObj = $scope.draggableObjects[index];
+          //  var otherIndex = $scope.draggableObjects.indexOf(obj);
+          //  $scope.draggableObjects[index] = obj;
+          //  $scope.draggableObjects[otherIndex] = otherObj;
+          //} else if (index = 0) {
+          //  var otherObj = $scope.draggableObjects[index];
+          //  var otherIndex = $scope.draggableObjects.indexOf(obj);
+          //  $scope.draggableObjects[index] = obj;
+          //  $scope.draggableObjects[otherIndex] = otherObj;
+          //} else {
+          //  var otherObj = $scope.draggableObjects[index];
+          //  var otherIndex = $scope.draggableObjects.indexOf(obj);
+          //  $scope.draggableObjects[index] = obj;
+          //  $scope.draggableObjects[otherIndex] = otherObj;
+          //}
+
           var otherObj = $scope.draggableObjects[index];
           var otherIndex = $scope.draggableObjects.indexOf(obj);
           $scope.draggableObjects[index] = obj;
           $scope.draggableObjects[otherIndex] = otherObj;
-        }
 
+          // Get current words
+          var shuffleChars = [];
+          for (var i = 0; i < $scope.draggableObjects.length; i++){
+            shuffleChars = shuffleChars.concat($scope.draggableObjects[i])
+          }
+          shuffleChars = shuffleChars.join('');
+          console.log(shuffleChars);
+
+          //Checking Status
+          if (shuffleChars == $scope.data.Statement) {
+            $scope.statusMessage = "Well Done."
+          } else {
+            $scope.statusMessage = "Try Again."
+          }
+        };
+
+        //Directive URL
+        $scope.directiveRootPath = $attrs.directiveRootPath;
         $scope.getTemplateUrl = function () {
           return $scope.directiveRootPath + '/angular-word-unscramble-game/templates/word-unscramble.html';
         };
 
-        ///////////////////////////////////////
-        console.log("Enter New ")
-        $scope.models = {
-          selected: null,
-          lists: {"A": [], "B": []}
-        };
-
-        // Generate initial model
-        for (var i = 1; i <= 3; ++i) {
-          $scope.models.lists.A.push({label: "Item A" + i});
-          $scope.models.lists.B.push({label: "Item B" + i});
-        }
-
-        console.log($scope.models.lists)
-
-        $scope.$watch('models', function(model) {
-          $scope.modelAsJson = angular.toJson(model, true);
-        }, true);
-        //console.log($scope.model)
-        console.log("Exit New")
-
-
-
       }],
-      template  : '<ng-include src="getTemplateUrl()"></ng-include>',
+      template  : '<ng-include src = "getTemplateUrl()"></ng-include>',
       link      : link
     };
   }

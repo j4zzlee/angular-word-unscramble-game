@@ -1,34 +1,29 @@
-<div>
-  Hello Scramble Game !!!!!!
+<!--<div class="row text-center">-->
+  <!--<ul class="draglist">-->
+    <!--<li ng-repeat="obj in draggableObjects" ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)">-->
+      <!--<div ng-drag="true" ng-drag-data="obj" ng-class="obj">-->
+        <!--{{ obj }}-->
+      <!--</div>-->
+    <!--</li>-->
+  <!--</ul>-->
+<!--</div>-->
+
+<div class="draglist">
+  <h3> {{ statusMessage }} </h3>
 </div>
-<div class="row text-center">
-  <ul class="draglist">
-    <li ng-repeat="obj in draggableObjects" ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)">
-      <div ng-drag="true" ng-drag-data="obj" ng-class="obj.name">
-        {{obj.name}}
-      </div>
+
+<div>
+  <ul ng-sortable="{animation:150}">
+    <!--<li ng-repeat="obj in draggableObjects" on-drag-start="onDrag($event)"-->
+    <li ng-repeat="obj in draggableObjects"
+        style="float: left;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        background-color: #0b93d5;
+        line-height: 50px;
+        text-align: center">
+      {{ obj }}
     </li>
   </ul>
-</div>
-
-
-<div>
-  <div><h1>OLLA</h1></div>
-  <ul dnd-list="list">
-    <!-- The dnd-draggable directive makes an element draggable and will
-		 transfer the object that was assigned to it. If an element was
-		 dragged away, you have to remove it from the original list
-		 yourself using the dnd-moved attribute -->
-    <li ng-repeat="item in list"
-        dnd-draggable="item"
-        dnd-moved="list.splice($index, 1)"
-        dnd-effect-allowed="move"
-        dnd-selected="models.selected = item"
-        ng-class="{'selected': models.selected === item}"
-    >
-      {{item.label}}
-      {{ item.label }}
-    </li>
-  </ul>
-
 </div>
