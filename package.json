@@ -1,0 +1,33 @@
+{
+  "name": "angular-word-unscramble-game",
+  "version": "1.0.0",
+  "description": "An English word unscramble game",
+  "main": "directive.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/st2forget/angular-word-unscramble-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/st2forget/angular-word-unscramble-game/issues"
+  },
+  "homepage": "https://github.com/st2forget/angular-word-unscramble-game#readme",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "dev": "webpack-dev-server --config webpack-dev-server.config.js --devtool eval --progress --color --hot --content-base build --port 2992"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-compass": "^2.1.0",
+    "gulp-compass-compile": "^1.1.0",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.2.0",
+    "gulp-uglify": "^1.5.3"
+  },
+  "dependencies": {
+
+  }
+}
