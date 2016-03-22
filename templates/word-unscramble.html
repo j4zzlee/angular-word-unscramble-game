@@ -1,29 +1,18 @@
-<!--<div class="row text-center">-->
-  <!--<ul class="draglist">-->
-    <!--<li ng-repeat="obj in draggableObjects" ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)">-->
-      <!--<div ng-drag="true" ng-drag-data="obj" ng-class="obj">-->
-        <!--{{ obj }}-->
-      <!--</div>-->
-    <!--</li>-->
-  <!--</ul>-->
-<!--</div>-->
+<div class="word-unscramble-container">
+  <div class="game-header">
+    <h3> {{ statusMessage }} </h3>
+  </div>
 
-<div class="draglist">
-  <h3> {{ statusMessage }} </h3>
-</div>
-
-<div>
-  <ul ng-sortable="{animation:150}">
-    <!--<li ng-repeat="obj in draggableObjects" on-drag-start="onDrag($event)"-->
-    <li ng-repeat="obj in draggableObjects"
-        style="float: left;
-        width: 50px;
-        height: 50px;
-        cursor: pointer;
-        background-color: #0b93d5;
-        line-height: 50px;
-        text-align: center">
-      {{ obj }}
-    </li>
-  </ul>
+  <div class="game-body">
+    <div class="game-container">
+      <ul ng-sortable="{animation:150}">
+        <li ng-repeat="obj in draggableObjects">
+          <div class="sortable-item-inner cloud">
+            <span class="word">{{ obj }}</span>
+            <div class="bottom"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

@@ -1,5 +1,102 @@
-@import "compass";
+@import "../node_modules/compass-mixins/lib/_compass.scss";
 
-.error {
-  color: red;
+* {
+  @include box-sizing(border-box);
+}
+
+.word-unscramble-container {
+  clear: both;
+  padding: 20px 0 0 0;
+  text-align: center;
+  background-color: #b9def0;
+
+  &.cloud {
+    background-color: #b9def0;
+  }
+
+  &::before, &::after {
+    display: table;
+  }
+
+
+  .game-body {
+    .game-container {
+      position: relative;
+      ul[ng-sortable] {
+        margin: auto;
+        white-space: nowrap;
+
+        li[ng-repeat] {
+          position: relative;
+          display: inline-block;
+
+          &.sortable-chosen {
+            &.sortable-ghost {
+              opacity: .2;
+              color: transparent;
+            }
+          }
+
+          .sortable-item-inner {
+            margin: 20px;
+            background-color: transparent;
+            //text-align: center;
+
+            .word {
+              margin: auto;
+              z-index: 999;
+              color: black;
+              position: absolute;
+              font-size: 40px;
+              top: 50%;
+              left: 50%;
+              @include transform(translateX(-50%));
+            }
+
+            //skins
+            &.cloud {
+              height: 75px;
+              position: relative;
+              width: 170px;
+
+              .bottom {
+                background-color: #fff;
+                @include border-radius(100px);
+                height: 45px;
+                position: absolute;
+                top: 30px;
+                width: 170px;
+                z-index: 0;
+              }
+
+              &::before {
+                background-color: white;
+                border-radius: 50%;
+                content: '';
+                height: 50px;
+                left: 20px;
+                position: absolute;
+                top: 10px;
+                width: 50px;
+                z-index: 1;
+              }
+
+              &::after {
+                position: absolute;
+                top: 0;
+                left: 70px;
+                background-color: white;
+                border-radius: 50%;
+                content: '';
+                width: 70px;
+                height: 70px;
+                z-index: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
 }

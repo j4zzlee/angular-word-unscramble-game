@@ -4,19 +4,17 @@ angular.module('st2forget.word-unscramble-game', ['ng-sortable']).
 
     var model = { //queston
       Id: 1,
-      Statement: 'LOVE',
-      //Hint: ''
-      //Answers: [
-      //  {
-      //    Id: 1,
-      //  }
-      //]1
+      Statement: 'LOVE'
     };
 
     var link = function ($scope, $element, $attrs){
-      // $element.on('click', function (e) {
-      //   e.stopPropagation();
-      // })
+       $element.on('click', function (e) {
+         e.stopPropagation();
+       });
+
+      $element.on('', function (e) {
+
+      });
     };
 
     return {
@@ -42,23 +40,6 @@ angular.module('st2forget.word-unscramble-game', ['ng-sortable']).
         $scope.onDropComplete = function (index, obj) {
           console.log('Word: ' + obj + ' Move to index: ' + index);
 
-          //if (index = $scope.draggableObjects.length){
-          //  var otherObj = $scope.draggableObjects[index];
-          //  var otherIndex = $scope.draggableObjects.indexOf(obj);
-          //  $scope.draggableObjects[index] = obj;
-          //  $scope.draggableObjects[otherIndex] = otherObj;
-          //} else if (index = 0) {
-          //  var otherObj = $scope.draggableObjects[index];
-          //  var otherIndex = $scope.draggableObjects.indexOf(obj);
-          //  $scope.draggableObjects[index] = obj;
-          //  $scope.draggableObjects[otherIndex] = otherObj;
-          //} else {
-          //  var otherObj = $scope.draggableObjects[index];
-          //  var otherIndex = $scope.draggableObjects.indexOf(obj);
-          //  $scope.draggableObjects[index] = obj;
-          //  $scope.draggableObjects[otherIndex] = otherObj;
-          //}
-
           var otherObj = $scope.draggableObjects[index];
           var otherIndex = $scope.draggableObjects.indexOf(obj);
           $scope.draggableObjects[index] = obj;
@@ -78,7 +59,7 @@ angular.module('st2forget.word-unscramble-game', ['ng-sortable']).
           } else {
             $scope.statusMessage = "Try Again."
           }
-        };
+        }
 
         //Directive URL
         $scope.directiveRootPath = $attrs.directiveRootPath;
@@ -87,7 +68,7 @@ angular.module('st2forget.word-unscramble-game', ['ng-sortable']).
         };
 
       }],
-      template  : '<ng-include src = "getTemplateUrl()"></ng-include>',
+      template  : '<ng-include src="getTemplateUrl()"></ng-include>',
       link      : link
     };
   }
