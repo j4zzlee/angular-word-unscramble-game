@@ -2,15 +2,19 @@ var webpack           = require('webpack'),
     path              = require('path'),
     pathNodeModules   = path.resolve(__dirname, 'node_modules'),
     pathVendor        = path.resolve(__dirname, './'),
-    pathAngular      = path.resolve(__dirname, './bower_components/'),
     PluginExtractText = require("extract-text-webpack-plugin");
 
 module.exports = function (options) {
+  options = options || {};
+    var
+      bowerPath = options.bowerPath || './www/lib/',
+      pathAngular      = path.resolve(__dirname, bowerPath);
+
     return [{
         entry  : {
             vendor   : [path.resolve(__dirname, './vendor.js')],
             directive: [
-                path.resolve(__dirname, './bower_components/sortable/ng-sortable.js'),
+                path.resolve(__dirname, bowerPath + 'sortable/ng-sortable.js'),
                 path.resolve(__dirname, './directive.js')
             ]
         },
