@@ -8,7 +8,17 @@ module.exports = function (options) {
     options         = options || {};
     var
         bowerPath   = options.bowerPath || './www/lib/',
-        pathAngular = path.resolve(__dirname, bowerPath);
+        pathAngular = path.resolve(__dirname, bowerPath),
+        plugins = [
+            new PluginExtractText('[name].css', {allChunks: true}),
+            new webpack.NoErrorsPlugin()
+        ];
+
+    if (options.minify) {
+        plugins.push(new webpack.optimize.UglifyJsPlugin({
+            sourceMap: false
+        }));
+    }
 
     return [{
         entry  : {
@@ -67,12 +77,6 @@ module.exports = function (options) {
                 }
             ]
         },
-        plugins: [
-            new PluginExtractText('[name].css', {allChunks: true}),
-            new webpack.optimize.UglifyJsPlugin({
-                sourceMap: false
-            }),
-            new webpack.NoErrorsPlugin()
-        ]
+        plugins: plugins
     }]
 };

@@ -15,7 +15,7 @@
   "homepage": "https://github.com/st2forget/angular-word-unscramble-game#readme",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "watch": "webpack --watch --display-error-details --config webpack.config.js"
+    "watch": "webpack --watch --display-error-details --config webpack-watch.config.js"
   },
   "devDependencies": {
     "babel-core": "^6.4.5",
