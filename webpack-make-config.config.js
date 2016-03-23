@@ -5,10 +5,10 @@ var webpack           = require('webpack'),
     PluginExtractText = require("extract-text-webpack-plugin");
 
 module.exports = function (options) {
-  options = options || {};
+    options         = options || {};
     var
-      bowerPath = options.bowerPath || './www/lib/',
-      pathAngular      = path.resolve(__dirname, bowerPath);
+        bowerPath   = options.bowerPath || './www/lib/',
+        pathAngular = path.resolve(__dirname, bowerPath);
 
     return [{
         entry  : {
