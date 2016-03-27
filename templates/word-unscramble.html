@@ -4,8 +4,8 @@
   </div>
 
   <div class="game-body">
-    <div class="game-container">
-      <ul ng-sortable="{animation:150}">
+    <div class="game-container" on-drag-end="onDropComplete()">
+      <ul ng-sortable="{animation:150}" >
         <li ng-repeat="obj in draggableObjects">
           <div class="sortable-item-inner cloud">
             <span class="word">{{ obj }}</span>

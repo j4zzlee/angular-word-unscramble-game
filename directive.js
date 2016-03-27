@@ -37,13 +37,7 @@ angular.module('st2forget.word-unscramble-game', ['ng-sortable']).
         };
 
         // Change position
-        $scope.onDropComplete = function (index, obj) {
-          console.log('Word: ' + obj + ' Move to index: ' + index);
-
-          var otherObj = $scope.draggableObjects[index];
-          var otherIndex = $scope.draggableObjects.indexOf(obj);
-          $scope.draggableObjects[index] = obj;
-          $scope.draggableObjects[otherIndex] = otherObj;
+        $scope.onDropComplete = function () {
 
           // Get current words
           var shuffleChars = [];
