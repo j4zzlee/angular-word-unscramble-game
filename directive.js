@@ -1,5 +1,6 @@
-angular.module('st2forget.word-unscramble-game', ['ng-sortable']).
-  directive('wordUnscrambleGame', function () {
+angular.module('st2forget.word-unscramble-game', [
+  'ng-sortable'
+]).directive('wordUnscrambleGame', function () {
 
 
     var model = { //queston
@@ -7,10 +8,10 @@ angular.module('st2forget.word-unscramble-game', ['ng-sortable']).
       Statement: 'LOVE'
     };
 
-    var link = function ($scope, $element, $attrs){
-       $element.on('click', function (e) {
-         e.stopPropagation();
-       });
+    var link = function ($scope, $element, $attrs) {
+      $element.on('click', function (e) {
+        e.stopPropagation();
+      });
 
       $element.on('', function (e) {
 
@@ -18,8 +19,8 @@ angular.module('st2forget.word-unscramble-game', ['ng-sortable']).
     };
 
     return {
-      controllerAs  : 'wordUnscrambleGame',
-      controller  : ['$attrs', '$scope', '$element', function ($attrs, $scope, $element) {
+      controllerAs: 'wordUnscrambleGame',
+      controller: ['$attrs', '$scope', '$element', '$interval', function ($attrs, $scope, $element, $interval) {
 
         $scope.data = model; //TODO: get data from api $.get(url, function () {})
         $scope.dataSentence = 'This is an sentence';
@@ -41,7 +42,7 @@ angular.module('st2forget.word-unscramble-game', ['ng-sortable']).
 
           // Get current words
           var shuffleChars = [];
-          for (var i = 0; i < $scope.draggableObjects.length; i++){
+          for (var i = 0; i < $scope.draggableObjects.length; i++) {
             shuffleChars = shuffleChars.concat($scope.draggableObjects[i])
           }
           shuffleChars = shuffleChars.join('');
@@ -61,9 +62,24 @@ angular.module('st2forget.word-unscramble-game', ['ng-sortable']).
           return $scope.directiveRootPath + '/angular-word-unscramble-game/templates/word-unscramble.html';
         };
 
+        // Add timer
+        $scope.timerRunning = true;
+
+        $scope.countDown = 2000;
+        $scope.interval = null;
+        $scope.startTimer = function () {
+          $scope.interval = $interval(function () {
+            $scope.countDown -= 1 ;
+          }, 1)
+        };
+
+        $scope.stopTimer = function () {
+          $interval.cancel($scope.interval);
+        };
+
       }],
-      template  : '<ng-include src="getTemplateUrl()"></ng-include>',
-      link      : link
+      template: '<ng-include src="getTemplateUrl()"></ng-include>',
+      link: link
     };
   }
 );

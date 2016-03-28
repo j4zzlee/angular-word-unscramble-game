@@ -19,11 +19,11 @@
     "angular": "^1.5.0",
     "sortable": "rubaxa/sortable"
   },
-  "_release": "72f925c6ad",
+  "_release": "df2ff71457",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "72f925c6ad0a5bfb01929fdc7363a3116a83500b"
+    "commit": "df2ff71457863f9d7b76343f5601a7b399c47ff7"
   },
   "_source": "git://github.com/st2forget/angular-word-unscramble-game.git",
   "_target": "*",

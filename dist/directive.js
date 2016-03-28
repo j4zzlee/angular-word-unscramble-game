@@ -31454,7 +31454,7 @@
 
 	  return {
 	    controllerAs: 'wordUnscrambleGame',
-	    controller: ['$attrs', '$scope', '$element', function ($attrs, $scope, $element) {
+	    controller: ['$attrs', '$scope', '$element', '$interval', function ($attrs, $scope, $element, $interval) {
 
 	      $scope.data = model; //TODO: get data from api $.get(url, function () {})
 	      $scope.dataSentence = 'This is an sentence';
@@ -31494,6 +31494,21 @@
 	      $scope.directiveRootPath = $attrs.directiveRootPath;
 	      $scope.getTemplateUrl = function () {
 	        return $scope.directiveRootPath + '/angular-word-unscramble-game/templates/word-unscramble.html';
+	      };
+
+	      // Add timer
+	      $scope.timerRunning = true;
+
+	      $scope.countDown = 2000;
+	      $scope.interval = null;
+	      $scope.startTimer = function () {
+	        $scope.interval = $interval(function () {
+	          $scope.countDown -= 1;
+	        }, 1);
+	      };
+
+	      $scope.stopTimer = function () {
+	        $interval.cancel($scope.interval);
 	      };
 	    }],
 	    template: '<ng-include src="getTemplateUrl()"></ng-include>',
