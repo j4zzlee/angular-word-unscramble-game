@@ -62,8 +62,10 @@ angular.module('st2forget.word-unscramble-game', [
           console.log(shuffleChars);
           //Checking Status
           if (shuffleChars == $scope.data.Statement) {
-            $scope.statusMessage = "Well Done."
-            $scope.stopTimer()
+            $scope.statusMessage = "Well Done.";
+            $scope.stopTimer();
+            $scope.replayShowHide();
+            $scope.draggableObjects = _.shuffle($scope.draggableObjects);
           } else {
             $scope.statusMessage = "Try Again."
           }
@@ -87,6 +89,7 @@ angular.module('st2forget.word-unscramble-game', [
             if ($scope.countDown == 0) {
               $scope.statusMessage = 'Time Over';
               $scope.stopTimer();
+              $scope.replayShowHide()
             }
           }, 1)
         };
@@ -95,6 +98,10 @@ angular.module('st2forget.word-unscramble-game', [
           $interval.cancel($scope.interval);
         };
 
+        $scope.replayVisible = false
+        $scope.replayShowHide = function () {
+          $scope.replayVisible = $scope.replayVisible ? false : true;
+        }
         $scope.replayTimer = function () {
           $scope.countDown = totalTime;
           $scope.interval = null;
