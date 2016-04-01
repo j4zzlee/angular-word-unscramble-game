@@ -1,0 +1,56 @@
+<div>
+	<button class="button button-full button-assertive icon ion-home" ng-click="startShowHide()"> Start
+	</button>
+</div>
+
+<div>
+	<div ng-show="startVisible">
+
+		<div class="game-header">
+			<h3> {{ statusMessage }} </h3>
+		</div>
+
+		<div class="word-unscramble-container">
+			<div class="game-body">
+				<div class="game-container" on-drag-end="onDropComplete()">
+					<ul ng-sortable="{animation:150}">
+						<li ng-repeat="obj in draggableObjects">
+							<div class="sortable-item-inner cloud">
+								<span class="word">{{ obj }}</span>
+								<div class="bottom"></div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div>
+			<button ng-click="hintShowHide()" class="button button-small button-balanced icon ion-gear-a"> Hint</button>
+			<span ng-show="hintVisible">
+        <h4> {{ hintMsg }} </h4>
+	    </span>
+		</div>
+
+		<div>
+			<h3>
+				Time: <span style="color:#d43f3a"> {{countDown}} </span>
+			</h3>
+			<button ng-click="startTimer()" class="button button-assertive">Start</button>
+			<buton ng-click="replayTimer(); replayShowHide()" class="button button-energized" ng-show="replayVisible">
+				Re-Play
+			</buton>
+		</div>
+
+		<script type="text/ng-template" id="popupId">
+			<h2> {{ popupTitle }}</h2>
+			<p>The word is
+          <span style="color:indianred; font-size: 20px; font-weight: bold;">  {{ correctWord  }} </span>
+      </p>
+		</script>
+
+	</div>
+</div>
+
+
+
