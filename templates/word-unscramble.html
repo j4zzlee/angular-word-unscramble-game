@@ -53,7 +53,8 @@
 					<h3>Score:</h3>
 				</th>
 				<th>
-					<button ng-click="instructionShowHide (); gameShowHide()" class="button icon ion-help-circled"></button>
+					<button ng-click="instructionShowHide (); gameShowHide()"
+					        class="button icon ion-help-circled"></button>
 				</th>
 				<th>
 					<h3>
@@ -63,17 +64,14 @@
 			</tr>
 			<tr>
 				<th>
-			<span style="color:#d43f3a; font-size: 20px"> {{scoreMark}} </span>
+					<span style="color:#d43f3a; font-size: 20px"> {{scoreMark}} </span>
 				</th>
-				<th> </th>
+				<th></th>
 				<th>
 					<span style="color:#d43f3a; font-size: 20px"> {{countDown}} </span>
 				</th>
 			</tr>
 		</table>
-		<buton ng-click="replayTimer(); replayShowHide()" class="button button-energized" ng-show="replayVisible">
-			Re-Play
-		</buton>
 	</div>
 </div>
 
@@ -83,13 +81,16 @@
 	<p>The word is
 		<span style="color:indianred; font-size: 20px; font-weight: bold;">  {{ correctWord  }} </span>
 	</p>
+	<buton type="button" ng-click="replayTimer(); closeThisDialog('Click OK Button')" class="ngdialog-button ngdialog-button-primary">
+		OK
+	</buton>
 </script>
 
 <!--Submit modal-->
 <script type="text/ng-template" id="submitId">
 	<h2> {{ submitMsg }}</h2>
 	<button type="button" class="ngdialog-button ngdialog-button-primary"
-	        ng-click="closeThisDialog('Click OK Button')">OK
+	        ng-click="correctBol && replayTimer(); closeThisDialog('Click OK Button')">OK
 	</button>
 </script>
 
