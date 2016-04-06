@@ -90,7 +90,7 @@
 <script type="text/ng-template" id="submitId">
 	<h2> {{ submitMsg }}</h2>
 	<button type="button" class="ngdialog-button ngdialog-button-primary"
-	        ng-click="correctBol && replayTimer(); closeThisDialog('Click OK Button')">OK
+	        ng-click="isCorrect && replayTimer(); closeThisDialog('Click OK Button'); startTimer()">OK
 	</button>
 </script>
 
@@ -100,6 +100,6 @@
 	<span style="color:indianred; font-size: 20px; font-weight: bold;">  {{ hintMsg  }} </span>
 	<br>
 	<button type="button" class="ngdialog-button ngdialog-button-secondary"
-	        ng-click="closeThisDialog('Click OK Button')">OK
+	        ng-click="startTimer(); closeThisDialog('Click OK Button')">OK
 	</button>
 </script>
