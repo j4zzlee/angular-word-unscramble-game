@@ -138,8 +138,10 @@ angular.module('st2forget.word-unscramble-game', [
             className: 'ngdialog-theme-default',
             scope: $scope
           }).then(function (value) {
+              $scope.startTimer();
               console.log("Confirm");
             }, function (reason) {
+              $scope.startTimer();
               console.log("Submit modal promise rejected. Reason: " + reason);
             }
           );
@@ -152,8 +154,10 @@ angular.module('st2forget.word-unscramble-game', [
             className: 'ngdialog-theme-default',
             scope: $scope
           }).then(function (value) {
+              $scope.startTimer();
               console.log("Confirm");
             }, function (reason) {
+              $scope.startTimer();
               console.log("Hint modal promise rejected. Reason: " + reason);
             }
           );
