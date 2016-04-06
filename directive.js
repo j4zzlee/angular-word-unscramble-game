@@ -69,10 +69,11 @@ angular.module('st2forget.word-unscramble-game', [
 
         /*Add timer*/
         $scope.countDown = totalTime;
-        $scope.interval = null;
+        var interval = null;
 
         $scope.startTimer = function () {
-          $scope.interval = $interval(function () {
+          $scope.stopTimer();
+          interval = $interval(function () {
             $scope.countDown -= 1;
             if ($scope.countDown <= 0) {
               $scope.stopTimer();
@@ -82,12 +83,12 @@ angular.module('st2forget.word-unscramble-game', [
         };
 
         $scope.stopTimer = function () {
-          $interval.cancel($scope.interval);
+          $interval.cancel(interval);
         };
 
         $scope.replayTimer = function () {
           $scope.countDown = totalTime;
-          $scope.interval = null;
+          interval = null;
           $scope.startTimer();
         };
 
@@ -97,9 +98,9 @@ angular.module('st2forget.word-unscramble-game', [
           $scope.popupTitle = 'Time up!';
           $scope.shuffeChars();
           console.log("CountDown: " + $scope.countDown);
-          console.log("Interval: " + $scope.interval)
+          console.log("Interval: " + interval)
           if ($scope.countDown <= 0) {
-            $interval.cancel($scope.interval);
+            $interval.cancel(interval);
           }
           $scope.countDown = totalTime;
 
@@ -119,7 +120,7 @@ angular.module('st2forget.word-unscramble-game', [
 
         $scope.submitDialog = function () { // Submit Dialog
           $scope.stopTimer();
-          $scope.interval = null;
+          interval = null;
           shuffleChars = $scope.draggableObjects.join('');
           if (shuffleChars == $scope.data.Statement) { //Checking Status
             $scope.isCorrect = true;
