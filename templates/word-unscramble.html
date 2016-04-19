@@ -1,87 +1,90 @@
-<!--Start Section-->
-<div ng-show="!startVisible">
-	<h2>Word Unscramble</h2>
-	<button class="button button-full button-assertive icon ion-home"
-	        ng-click="startShowHide(); instructionShowHide()"> Start
-	</button>
-</div>
+<div class="full-screen">
+	<!--Start Section-->
+	<div ng-show="!startVisible">
+		<h2>Word Unscramble</h2>
+		<button class="button button-start"
+		        ng-click="startShowHide(); instructionShowHide()"> START
+		</button>
+	</div>
 
-<!--Instruction Section-->
-<div ng-show="instructionVisible">
-	<h2>Instructions</h2>
-	<p>Reagrange the letters to form a valid word.</p>
-	<br>
-	<p>You may click the hint button to get the meaning of the word </p>
-	<button class="button button-full button-assertive icon ion-home"
-	        ng-click="gameShowHide(); instructionShowHide(); startTimer()">Start
-	</button>
-</div>
+	<!--Instruction Section-->
+	<div ng-show="instructionVisible">
+		<h2>Instructions</h2>
+		<p>Reagrange the letters to form a valid word.</p>
+		<br>
+		<p>You may click the hint button to get the meaning of the word </p>
+		<button class="button button-instruction"
+		        ng-click="gameShowHide(); instructionShowHide(); startTimer()">Start
+		</button>
+	</div>
 
-<!--Game Section-->
-<div ng-show="gameVisible">
-	<div class="word-unscramble-container">
-		<div class="game-body">
-			<div class="game-container" on-drag-end="onDropComplete()">
-				<ul ng-sortable="{animation:150}">
-					<li ng-repeat="obj in draggableObjects">
-						<div class="sortable-item-inner cloud">
-							<span class="word">{{ obj }}</span>
-							<div class="bottom"></div>
-						</div>
-					</li>
-				</ul>
+	<!--Game Section-->
+	<div ng-show="gameVisible">
+		<div class="word-unscramble-container">
+			<div class="game-body">
+				<div class="game-container" on-drag-end="onDropComplete()">
+					<ul ng-sortable="{animation:150}">
+						<li ng-repeat="obj in draggableObjects">
+							<div class="sortable-item-inner cloud">
+								<span class="word">{{ obj }}</span>
+								<div class="bottom"></div>
+							</div>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div>
-		<table>
-			<tr>
-				<th>
-					<button ng-click="hintDiaglog()" class="button button-large button-balanced icon ion-gear-a"> Hint
-					</button>
-				</th>
-				<th>
-					<button ng-click="submitDialog()" class="button button-large button-balanced">Submit</button>
-				</th>
-			</tr>
-		</table>
-	</div>
-	<div>
-		<table>
-			<tr>
-				<th>
-					<h3>Score:</h3>
-				</th>
-				<th>
-					<button ng-click="instructionShowHide (); gameShowHide()"
-					        class="button icon ion-help-circled"></button>
-				</th>
-				<th>
-					<h3>
-						Time:
-					</h3>
-				</th>
-			</tr>
-			<tr>
-				<th>
-					<span style="color:#d43f3a; font-size: 20px"> {{scoreMark}} </span>
-				</th>
-				<th></th>
-				<th>
-					<span style="color:#d43f3a; font-size: 20px"> {{countDown}} </span>
-				</th>
-			</tr>
-		</table>
+		<div>
+			<table>
+				<tr>
+					<th>
+						<button ng-click="hintDiaglog()" class="button">
+							Hint
+						</button>
+					</th>
+					<th>
+						<button ng-click="submitDialog()" class="button">Submit</button>
+					</th>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<table>
+				<tr>
+					<th>
+						<h3>Score:</h3>
+					</th>
+					<th>
+						<button ng-click="instructionShowHide (); gameShowHide()"
+						        class="button icon ion-help-circled"></button>
+					</th>
+					<th>
+						<h3>
+							Time:
+						</h3>
+					</th>
+				</tr>
+				<tr>
+					<th>
+						<span style="color:#d43f3a; font-size: 20px"> {{scoreMark}} </span>
+					</th>
+					<th></th>
+					<th>
+						<span style="color:#d43f3a; font-size: 20px"> {{countDown}} </span>
+					</th>
+				</tr>
+			</table>
+		</div>
 	</div>
 </div>
-
 <!--TimeOver modal-->
 <script type="text/ng-template" id="timeOverId">
 	<h2> {{ popupTitle }}</h2>
 	<p>The word is
 		<span style="color:indianred; font-size: 20px; font-weight: bold;">  {{ correctWord  }} </span>
 	</p>
-	<buton type="button" ng-click="replayTimer(); closeThisDialog('Click OK Button')" class="ngdialog-button ngdialog-button-primary">
+	<buton type="button" ng-click="replayTimer(); closeThisDialog('Click OK Button')"
+	       class="ngdialog-button ngdialog-button-primary">
 		OK
 	</buton>
 </script>

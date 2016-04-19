@@ -4,11 +4,57 @@
   @include box-sizing(border-box);
 }
 
-.word-unscramble-container {
+.button {
+  @include border-radius(5px);
+  font-family: Arial;
+  border: solid #000000 2px;
+  text-decoration: none;
+
+  &.button-success {
+    color: green;
+  }
+
+  &.button-warning {
+    color: orange;
+  }
+
+  &.button-sm {
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+  }
+
+  &.button-lg {
+    fonsize: 20px;
+    padding: 10px 20px 10px 20px;
+  }
+  //primary, error
+}
+
+.button:hover {
+  background: #ede326;
+  text-decoration: none;
+}
+
+.button:active {
+  transform: translateY(4px);
+}
+
+.full-screen {
   clear: both;
   padding: 20px 0 0 0;
   text-align: center;
-  background-color: #b9def0;
+  background-color: rgb(164, 179, 87); /* Old Browsers */
+  @include background-image(linear-gradient(left, rgb(164, 179, 87) 0%, rgb(212, 236, 214) 0%, rgb(214, 237, 216) 100%));
+
+  .button-start{
+    background-color: transparent;
+    color: darkslategrey;
+    font-size: 20px;
+    &:hover {
+      background: #ede326;
+      text-decoration: none;
+    }
+  }
 
   &.cloud {
     background-color: #b9def0;
@@ -17,7 +63,6 @@
   &::before, &::after {
     display: table;
   }
-
 
   .game-body {
     .game-container {
