@@ -1,21 +1,74 @@
 <div class="full-screen">
 	<!--Start Section-->
-	<div ng-show="!startVisible">
-		<h2>Word Unscramble</h2>
-		<button class="button button-start"
-		        ng-click="startShowHide(); instructionShowHide()"> START
-		</button>
+	<div ng-show="!startVisible" class="start-screen">
+		<div class="game-title">
+			<div class="inner">
+				<div class="word">
+					<div class="angle angle10">W</div>
+					ord
+				</div>
+				<div class="word">
+					<span class="angle angle10-minus">S</span>cramble
+				</div>
+			</div>
+
+		</div>
+		<div class="game-middle">
+			<button class="button button-start"
+			        ng-click="startShowHide(); instructionShowHide()"> START
+			</button>
+		</div>
+		<div class="game-footer">
+			<div class="inner">
+				<table width="100%">
+					<tr>
+						<td>
+							<div class="word">
+								<div class="angle angle10 card-border">T</div>
+								<div class="angle angle10">I</div>
+								<div class="angle angle10-minus">M</div>
+								<div class="angle angle10-minus">E</div>
+							</div>
+						</td>
+						<td>
+							<div class="word">
+								<div class="angle angle10">F</div>
+								<div class="angle angle10-minus">O</div>
+								<div class="angle angle10">R</div>
+							</div>
+						</td>
+						<td>
+							<div class="word">
+								<div class="angle angle10">L</div>
+								<div class="angle angle10">E</div>
+								<div class="angle angle10">A</div>
+								<div class="angle angle10-minus">R</div>
+								<div class="angle angle10-minus">N</div>
+								<div class="angle">I</div>
+								<div class="angle angle10">N</div>
+								<div class="angle angle10-minus">G</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
 	</div>
 
 	<!--Instruction Section-->
-	<div ng-show="instructionVisible">
-		<h2>Instructions</h2>
-		<p>Reagrange the letters to form a valid word.</p>
-		<br>
-		<p>You may click the hint button to get the meaning of the word </p>
-		<button class="button button-instruction"
-		        ng-click="gameShowHide(); instructionShowHide(); startTimer()">Start
-		</button>
+	<div ng-show="instructionVisible" class="instruction-screen">
+		<h2 class="instruction">Instructions</h2>
+		<div class="instruction-text">
+			<p>Reagrange the letters to form a valid word.</p>
+			<br>
+			<p>You may click the hint button to get the meaning of the word </p>
+		</div>
+		<div class="instruction-button">
+			<button class="button button-instruction"
+			        ng-click="gameShowHide(); instructionShowHide(); startTimer()">START
+			</button>
+		</div>
 	</div>
 
 	<!--Game Section-->
@@ -34,44 +87,43 @@
 				</div>
 			</div>
 		</div>
-		<div>
-			<table>
+		<div class="buttonHolder">
+			<table width="100%" class="actions">
 				<tr>
-					<th>
-						<button ng-click="hintDiaglog()" class="button">
-							Hint
-						</button>
-					</th>
-					<th>
-						<button ng-click="submitDialog()" class="button">Submit</button>
-					</th>
+					<td>
+						<button ng-click="hintDiaglog()" class="button button-hint">HINT</button>
+					</td>
+					<td>
+						<button ng-click="submitDialog()" class="button button-submit">SUBMIT</button>
+
+					</td>
 				</tr>
 			</table>
 		</div>
 		<div>
-			<table>
+			<table width="100%" class="actions">
 				<tr>
-					<th>
+					<td>
 						<h3>Score:</h3>
-					</th>
-					<th>
+					</td>
+					<td>
 						<button ng-click="instructionShowHide (); gameShowHide()"
 						        class="button icon ion-help-circled"></button>
-					</th>
-					<th>
+					</td>
+					<td>
 						<h3>
 							Time:
 						</h3>
-					</th>
+					</td>
 				</tr>
 				<tr>
-					<th>
+					<td>
 						<span style="color:#d43f3a; font-size: 20px"> {{scoreMark}} </span>
-					</th>
-					<th></th>
-					<th>
+					</td>
+					<td></td>
+					<td>
 						<span style="color:#d43f3a; font-size: 20px"> {{countDown}} </span>
-					</th>
+					</td>
 				</tr>
 			</table>
 		</div>
