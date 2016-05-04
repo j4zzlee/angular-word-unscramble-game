@@ -14,7 +14,7 @@
 
 		</div>
 		<div class="game-middle">
-			<button class="button button-start"
+			<button class="button button-lg"
 			        ng-click="startShowHide(); instructionShowHide()"> START
 			</button>
 		</div>
@@ -65,7 +65,7 @@
 			<p>You may click the hint button to get the meaning of the word </p>
 		</div>
 		<div class="instruction-button">
-			<button class="button button-instruction"
+			<button class="button button-lg"
 			        ng-click="gameShowHide(); instructionShowHide(); startTimer()">START
 			</button>
 		</div>
@@ -78,9 +78,8 @@
 				<div class="game-container" on-drag-end="onDropComplete()">
 					<ul ng-sortable="{animation:150}">
 						<li ng-repeat="obj in draggableObjects">
-							<div class="sortable-item-inner cloud">
-								<span class="word">{{ obj }}</span>
-								<div class="bottom"></div>
+							<div class="sortable-item-inner">
+                              {{ obj }}
 							</div>
 						</li>
 					</ul>
@@ -90,71 +89,76 @@
 		<div class="buttonHolder">
 			<table width="100%" class="actions">
 				<tr>
-					<td>
-						<button ng-click="hintDiaglog()" class="button button-hint">HINT</button>
+					<td colspan="3">
+						<button ng-click="hintDiaglog()" class="button button-lg">HINT</button>
 					</td>
-					<td>
-						<button ng-click="submitDialog()" class="button button-submit">SUBMIT</button>
+					<td colspan="3">
+						<button ng-click="submitDialog()" class="button button-lg">SUBMIT</button>
 
 					</td>
 				</tr>
-			</table>
-		</div>
-		<div>
-			<table width="100%" class="actions">
 				<tr>
-					<td>
+					<td width="33.3%" colspan="2">
 						<h3>Score:</h3>
 					</td>
-					<td>
+					<td width="33.3%" colspan="2" rowspan="2" class="valign-center">
 						<button ng-click="instructionShowHide (); gameShowHide()"
-						        class="button icon ion-help-circled"></button>
+						        class="button button-lg">
+							<i class="icon ion-help-circled "></i>
+						</button>
 					</td>
-					<td>
+					<td width="33.3%" colspan="2">
 						<h3>
 							Time:
 						</h3>
 					</td>
 				</tr>
 				<tr>
-					<td>
+					<td colspan="2">
+
 						<span style="color:#d43f3a; font-size: 20px"> {{scoreMark}} </span>
 					</td>
-					<td></td>
-					<td>
+					<td colspan="2">
 						<span style="color:#d43f3a; font-size: 20px"> {{countDown}} </span>
 					</td>
 				</tr>
 			</table>
 		</div>
-	</div>
-</div>
-<!--TimeOver modal-->
-<script type="text/ng-template" id="timeOverId">
-	<h2> {{ popupTitle }}</h2>
-	<p>The word is
-		<span style="color:indianred; font-size: 20px; font-weight: bold;">  {{ correctWord  }} </span>
-	</p>
-	<buton type="button" ng-click="replayTimer(); closeThisDialog('Click OK Button')"
-	       class="ngdialog-button ngdialog-button-primary">
-		OK
-	</buton>
-</script>
+		<!--TimeOver modal-->
+		<script type="text/ng-template" id="timeOverId">
+			<h2> {{ popupTitle }}</h2>
+			<p>The word is
+				<span style="color:indianred; font-size: 20px; font-weight: bold;">  {{ correctWord  }} </span>
+			</p>
+			<div class="text-center">
+				<buton type="button" ng-click="replayTimer(); closeThisDialog('Click OK Button')"
+				       class="button button-sm">
+					OK
+				</buton>
+			</div>
+		</script>
 
-<!--Submit modal-->
-<script type="text/ng-template" id="submitId">
-	<h2> {{ submitMsg }}</h2>
-	<button type="button" class="ngdialog-button ngdialog-button-primary"
-	        ng-click="isCorrect && replayTimer(); closeThisDialog('Click OK Button'); startTimer()">OK
-	</button>
-</script>
+		<!--Submit modal-->
+		<script type="text/ng-template" id="submitId">
+			<div>
+				<h2> {{ submitMsg }}</h2>
+				<div class="text-center">
+					<button type="button" class="button button-sm"
+					        ng-click="isCorrect && replayTimer(); closeThisDialog('Click OK Button'); startTimer()">OK
+					</button>
+				</div>
+			</div>
+		</script>
 
-<!-- Hint modal-->
-<script type="text/ng-template" id="hintId">
-	<h3>The meaning of the word is:</h3>
-	<span style="color:indianred; font-size: 20px; font-weight: bold;">  {{ hintMsg  }} </span>
-	<br>
-	<button type="button" class="ngdialog-button ngdialog-button-secondary"
-	        ng-click="startTimer(); closeThisDialog('Click OK Button')">OK
-	</button>
-</script>
+		<!-- Hint modal-->
+		<script type="text/ng-template" id="hintId">
+			<div>
+				<h3>The meaning of the word is:</h3>
+				<span style="color:indianred; font-size: 20px; font-weight: bold;">  {{ hintMsg  }} </span>
+				<div class="text-center">
+					<button type="button" class="button button-sm"
+					        ng-click="startTimer(); closeThisDialog('Click OK Button')">OK
+					</button>
+				</div>
+			</div>
+		</script>

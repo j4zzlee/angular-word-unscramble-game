@@ -23,7 +23,7 @@ angular.module('st2forget.word-unscramble-game', [
         /*Declare local variable*/
         var shuffleChars = []; // Get current words
         var scoreIncrement = 1000;
-        var totalTime = 3000;
+        var totalTime = 20000;
 
         /*// Declare $scope variable*/
         $scope.data = model; //TODO: get data from api $.get(url, function () {})
@@ -74,12 +74,12 @@ angular.module('st2forget.word-unscramble-game', [
         $scope.startTimer = function () {
           $scope.stopTimer();
           interval = $interval(function () {
-            $scope.countDown -= 1;
+            $scope.countDown -= 10;
             if ($scope.countDown <= 0) {
               $scope.stopTimer();
               $scope.timeOverDialog()
             }
-          }, 1)
+          }, 10)
         };
 
         $scope.stopTimer = function () {

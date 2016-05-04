@@ -15,7 +15,6 @@
   font-family: Arial;
   font-size: 20px;
   font-weight: bold;
-  padding: 13px 32px;
   text-decoration: none;
   text-shadow: 0px 1px 0px #3d768a;
 
@@ -28,17 +27,44 @@
     position: relative;
     top: 1px;
   }
+
+  .button-sm {
+    padding: 7px 14px;
+  }
+
+  .button-lg {
+    padding: 13px 32px;
+  }
+
+  .ngdialog-button {
+    background-color: black;
+    color: white;
+  }
 }
 
-table.actions {
-  margin-top: 50px;
-  &:last-of-type {
-    tr:last-child {
-      td {
-        padding-bottom: 10px;
+.text-center {
+  text-align: center;
+}
+
+table {
+  &.actions {
+    margin-top: 50px;
+    &:last-of-type {
+      tr:last-child {
+        td {
+          padding-bottom: 10px;
+        }
       }
     }
   }
+
+  tr td {
+    padding-top: 20px;
+  }
+}
+
+.valign-center {
+  vertical-align: middle;
 }
 
 div.start-screen {
@@ -50,6 +76,7 @@ div.start-screen {
     clear: both;
     height: 100px;
     div.inner {
+      @include translateX(-50%);
       display: inline-block;
       white-space: nowrap;
       font-size: 50px;
@@ -58,7 +85,7 @@ div.start-screen {
       left: 50%;
       line-height: 50px;
       clear: both;
-      @include translateX(-50%);
+      padding: 20px 50px 50px 50px;
       div.word {
         display: inline-block;
         white-space: nowrap;
@@ -81,6 +108,7 @@ div.start-screen {
 
   div.game-middle {
     height: 100px;
+    text-align: center;
   }
 
   div.game-footer {
@@ -109,7 +137,7 @@ div.start-screen {
           @include border-radius(12px 12px 12px 12px);
           //border: 2px solid #ff44de;
           background-color: #f9edb4;
-          box-shadow: 5px 5px #2e171d;
+          box-shadow: 5px 5px #3d796f;
         }
         .angle10 {
           @include transform(rotate(335deg));
@@ -129,22 +157,20 @@ div.instruction-screen {
     font-size: 50px;
     line-height: 70px;
     color: white;
-    text-shadow:
-      3px 3px 0 #325d51,
-      -1px -1px 0 #325d51,
-      1px -1px 0 #325d51,
-      -1px 1px 0 #325d51,
-      1px 1px 0 #325d51;
+    text-shadow: 3px 3px 0 #325d51,
+    -1px -1px 0 #325d51,
+    1px -1px 0 #325d51,
+    -1px 1px 0 #325d51,
+    1px 1px 0 #325d51;
   }
   div.instruction-text {
     font-size: 20px;
     color: white;
-    text-shadow:
-      3px 3px 0 #325d51,
-      -1px -1px 0 #325d51,
-      1px -1px 0 #325d51,
-      -1px 1px 0 #325d51,
-      1px 1px 0 #325d51;
+    text-shadow: 3px 3px 0 #325d51,
+    -1px -1px 0 #325d51,
+    1px -1px 0 #325d51,
+    -1px 1px 0 #325d51,
+    1px 1px 0 #325d51;
     background-color: #398C57;
     padding: 30px 15px 30px 15px;
     margin: 20px 80px 20px 80px;
@@ -154,6 +180,31 @@ div.instruction-screen {
     line-height: 100px;
   }
 }
+//
+//.modal {
+//  text-align: center;
+//  background-color: transparent;
+//  position: inherit;
+//  display: table-footer-group;
+//  .modal-button {
+//    @include box-shadow(0px 10px 14px -7px #276873);
+//    @include background(top, #599bb3 5%, #408c99 100%);
+//    background-color: #599bb3;
+//    @include border-radius(8px);
+//    display: inline-block;
+//    cursor: pointer;
+//    color: #ffffff;
+//    font-family: Arial;
+//    font-size: 15px;
+//    font-weight: bold;
+//    padding: 5px 5px;
+//    text-decoration: none;
+//    text-shadow: 0px 1px 0px #3d768a;
+//    margin: 0px 0px 0px 180px;
+//  }
+//}
+
+
 
 .full-screen {
   clear: both;
@@ -162,15 +213,15 @@ div.instruction-screen {
   background-color: rgb(164, 179, 87); /* Old Browsers */
   @include background-image(linear-gradient(left, rgb(164, 179, 87) 0%, rgb(212, 236, 214) 0%, rgb(214, 237, 216) 100%));
 
-  &.cloud {
-    background-color: #b9def0;
-  }
-
   &::before, &::after {
     display: table;
   }
 
   .game-body {
+    background-color: #E27368;
+    padding: 30px 15px 30px 15px;
+    margin: 20px 20px 20px 20px;
+    border-radius: 20px 20px 20px 20px;
     .game-container {
       position: relative;
       ul[ng-sortable] {
@@ -187,62 +238,19 @@ div.instruction-screen {
               color: transparent;
             }
           }
-
           .sortable-item-inner {
-            margin: 20px;
-            background-color: transparent;
-            //text-align: center;
-
-            .word {
-              margin: auto;
-              z-index: 999;
-              color: black;
-              position: absolute;
-              font-size: 40px;
-              top: 50%;
-              left: 50%;
-              @include transform(translateX(-50%));
-            }
-
-            //skins
-            &.cloud {
-              height: 75px;
-              position: relative;
-              width: 170px;
-
-              .bottom {
-                background-color: #fff;
-                @include border-radius(100px);
-                height: 45px;
-                position: absolute;
-                top: 30px;
-                width: 170px;
-                z-index: 0;
-              }
-
-              &::before {
-                background-color: white;
-                border-radius: 50%;
-                content: '';
-                height: 50px;
-                left: 20px;
-                position: absolute;
-                top: 10px;
-                width: 50px;
-                z-index: 1;
-              }
-
-              &::after {
-                position: absolute;
-                top: 0;
-                left: 70px;
-                background-color: white;
-                border-radius: 50%;
-                content: '';
-                width: 70px;
-                height: 70px;
-                z-index: 1;
-              }
+            @include border-radius(12px 12px 12px 12px);
+            @include box-shadow(3px 3px 5px 0px #71a7a2);
+            margin: 2px;
+            background-color: #f9edb4;
+            color: black;
+            width: 55px;
+            padding: 5px;
+            font-size: 50px;
+            line-height: 50px;
+            cursor: pointer;
+            span {
+              cursor: pointer;
             }
           }
         }
