@@ -14,7 +14,7 @@ angular.module('st2forget.word-unscramble-game', [
       });
       $element.on('', function (e) {
       });
-    };
+    };  
 
     return {
       controllerAs: 'wordUnscrambleGame',
