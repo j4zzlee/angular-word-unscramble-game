@@ -2,11 +2,11 @@ angular.module('st2forget.word-unscramble-game', [
   'ng-sortable',
   'ngDialog'
 ]).directive('wordUnscrambleGame', function () {
-    var model = { //queston
-      Id: 1,
-      Statement: 'LOVE',
-      Hint: 'Thing that everyone need most'
-    };
+    // var model = { //queston
+    //   Id: 1,
+    //   Statement: 'LOVE',
+    //   Hint: 'Thing that everyone need most'
+    // };
 
     var link = function ($scope, $element) { // create link
       $element.on('click', function (e) {
@@ -26,12 +26,11 @@ angular.module('st2forget.word-unscramble-game', [
         var totalTime = 20000;
 
         /*// Declare $scope variable*/
-        $scope.data = model; //TODO: get data from api $.get(url, function () {})
-        $scope.dataSentence = 'This is an sentence'; // For detect sentence
+        $scope.modelSentence = 'This is an sentence'; // For detect sentence
         $scope.gameType = $attrs.gameType;
-        $scope.correctWord = $scope.data.Statement;
+        $scope.correctWord = $scope.model.Statement;
         $scope.isCorrect = false;
-        $scope.hintMsg = $scope.data.Hint;
+        $scope.hintMsg = $scope.model.Hint;
         $scope.scoreMark = 0;
 
         $scope.startVisible = false; //Show and Hide Start Button
@@ -50,7 +49,7 @@ angular.module('st2forget.word-unscramble-game', [
         };
 
         $scope.shuffeChars = function () { // Shuffle Character
-          var charsArray = _.shuffle($scope.data.Statement.split($scope.gameType == 'word' ? '' : ' ')); // Shuffle original word
+          var charsArray = _.shuffle($scope.model.Statement.split($scope.gameType == 'word' ? '' : ' ')); // Shuffle original word
           // console.log(charsArray);
           $scope.draggableObjects = charsArray;
         };
@@ -122,7 +121,7 @@ angular.module('st2forget.word-unscramble-game', [
           $scope.stopTimer();
           interval = null;
           shuffleChars = $scope.draggableObjects.join('');
-          if (shuffleChars == $scope.data.Statement) { //Checking Status
+          if (shuffleChars == $scope.model.Statement) { //Checking Status
             $scope.isCorrect = true;
             $scope.scoreMark += (10 * scoreIncrement);
             $scope.submitMsg = 'Correct !';
