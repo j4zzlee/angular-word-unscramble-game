@@ -2,11 +2,7 @@ angular.module('st2forget.word-unscramble-game', [
   'ng-sortable',
   'ngDialog'
 ]).directive('wordUnscrambleGame', function () {
-    // var model = { //queston
-    //   Id: 1,
-    //   Statement: 'LOVE',
-    //   Hint: 'Thing that everyone need most'
-    // };
+
 
     var link = function ($scope, $element) { // create link
       $element.on('click', function (e) {
@@ -16,6 +12,7 @@ angular.module('st2forget.word-unscramble-game', [
       });
     };
 
+  
     return {
       controllerAs: 'wordUnscrambleGame',
       controller: ['$attrs', '$scope', '$element', '$interval', 'ngDialog', function ($attrs, $scope, $element, $interval, ngDialog) {
