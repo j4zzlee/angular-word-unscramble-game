@@ -1,8 +1,8 @@
 angular.module('st2forget.word-unscramble-game',
   ['ng-sortable',
-  'ngDialog']
+    'ngDialog']
 ).directive('wordUnscrambleGame', function () {
-    var totalTime = 50000,
+    var totalTime = 3000000,
       interval = null,
       shuffleChars = [],
       scoreIncrement = 1000;
@@ -19,10 +19,11 @@ angular.module('st2forget.word-unscramble-game',
       });
     };
 
-    var shuffeChars = function () { // Shuffle Character
+    var shuffeCharsFn = function () { // Shuffle Character
       return _.shuffle(this.model.Statement.split(this.gameType == 'word' ? '' : ' ')); // Shuffle original word
     };
 
+    /*Timer Function*/
     var startTimer = function () {
       var self = this;
       this.stopTimer();
@@ -46,10 +47,12 @@ angular.module('st2forget.word-unscramble-game',
       this.startTimer();
     };
 
+    /*Show Dialog*/
     var timeOverDialog = function () { // Time Over Dialog
       var self = this;
       this.stopTimer();
       this.popupTitle = 'Time up!';
+      // this.randomWords();
       this.draggableObjects = this.shuffeChars();
 
       if (this.countDown <= 0) {
@@ -64,14 +67,12 @@ angular.module('st2forget.word-unscramble-game',
         scope: this
       }).then(function () {
           self.startTimer();
-
         }, function (reason) {
           self.startTimer();
+          self.randomWords();
           console.log("TimeOver modal promise rejected. Reason: " + reason);
         }
       );
-
-
     };
 
     var submitDialog = function () { // Submit Dialog
@@ -84,8 +85,11 @@ angular.module('st2forget.word-unscramble-game',
         this.isCorrect = true;
         this.scoreMark += (10 * scoreIncrement);
         this.draggableObjects = this.shuffeChars();
-        this.countDown = totalTime
-      } else {
+        this.countDown = totalTime;
+
+        this.randomWords();
+      }
+      else {
         this.scoreMark -= (2 * scoreIncrement);
         this.submitMsg = 'Sorry, the word you entered is not in our dictionary'
       }
@@ -122,13 +126,50 @@ angular.module('st2forget.word-unscramble-game',
       );
     };
 
+
+    var randomWords = function () {
+      var self = this;
+      var randomNumber = _.random(0, 6);
+      var listOfWords = this.listOfWOrds;
+      console.log(listOfWords[randomNumber]);
+
+      this.model.ID = randomNumber;
+      this.model.Statement = listOfWords[randomNumber][0];
+      this.model.Hint = listOfWords[randomNumber][1];
+
+      this.draggableObjects = this.shuffeChars(); // shuffle char array
+
+    };
+
+    var exitWordUnscramble = function () {
+        try {
+          if (Native && typeof Native == "function") {
+            Native("dataCallback", quizID);
+        }}
+        catch (err) {
+          //logError(err);
+          console.log("ERROR FUNCTION")
+        }
+      };
+
     var init = function ($attrs, $scope, $element, $interval, $http, ngDialog) {
-      /*Directive URL*/
+      /*// Declare $scope variable*/
+      $scope.gameType = $attrs.gameType;
+      $scope.isCorrect = false;
+      $scope.scoreMark = 0;
+      $scope.countDown = totalTime;
       $scope.ngDialog = ngDialog;
       $scope.directiveRootPath = $attrs.directiveRootPath;
       $scope.shuffleChars = shuffleChars;
+      $scope.model = {
+        ID: null,
+        Statement: null,
+        Hint: null
+      }; // Get random data
       $scope.interval = $interval;
-      $scope.shuffeChars = shuffeChars;
+
+      /*Declare function for $scope*/
+      $scope.shuffeChars = shuffeCharsFn;
       $scope.getTemplateUrl = getTemplateUrl;
       $scope.startTimer = startTimer;
       $scope.stopTimer = stopTimer;
@@ -136,42 +177,24 @@ angular.module('st2forget.word-unscramble-game',
       $scope.submitDialog = submitDialog;
       $scope.timeOverDialog = timeOverDialog;
       $scope.hintDiaglog = hintDiaglog;
-
-      /*// Declare $scope variable*/
-      $scope.gameType = $attrs.gameType;
-      $scope.correctWord = $scope.model.Statement;
-      $scope.isCorrect = false;
-      $scope.hintMsg = $scope.model.Hint;
-      $scope.scoreMark = 0;
-      $scope.countDown = totalTime;
-      $scope.draggableObjects = $scope.shuffeChars();
+      $scope.randomWords = randomWords;
+      $scope.exitWordUnscramble = exitWordUnscramble;
 
       $scope.onDropComplete = function () { // Change position
         shuffleChars = $scope.draggableObjects.join('');
       };
 
-      /*Show and hide section*/
-      $scope.startVisible = false; //Show and Hide Start Button
-      $scope.startShowHide = function () {
-        $scope.startVisible = $scope.startVisible ? false : true;
-      };
-
-      $scope.instructionVisible = false; //Show and Hide Start Button
-      $scope.instructionShowHide = function () {
-        $scope.instructionVisible = $scope.instructionVisible ? false : true;
-      };
-
-      $scope.gameVisible = false; // Show and Hide Game
-      $scope.gameShowHide = function () {
-        $scope.gameVisible = $scope.gameVisible ? false : true;
-      };
+      /*Running */
+      $scope.randomWords(); // Change words
+      $scope.hintMsg = $scope.model.Hint;
+      $scope.draggableObjects = $scope.shuffeChars();
     };
 
     return {
       controllerAs: 'wordUnscrambleGame',
       controller: ['$attrs', '$scope', '$element', '$interval', '$http', 'ngDialog', function ($attrs, $scope, $element, $interval, $http, ngDialog) {
         $scope.$on('WorldUnscrambleCtrlModelUpdated', function (event, data) {
-          $scope.model = data;
+          $scope.listOfWOrds = data;
           init($attrs, $scope, $element, $interval, $http, ngDialog);
         });
       }],
