@@ -2,7 +2,7 @@ angular.module('st2forget.word-unscramble-game',
   ['ng-sortable',
     'ngDialog']
 ).directive('wordUnscrambleGame', function () {
-    var totalTime = 3000000,
+    var totalTime = 30000,
       interval = null,
       shuffleChars = [],
       scoreIncrement = 1000;
