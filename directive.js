@@ -128,7 +128,6 @@ angular.module('st2forget.word-unscramble-game',
 
 
     var randomWords = function () {
-      var self = this;
       var randomNumber = _.random(0, 6);
       var listOfWords = this.listOfWOrds;
       console.log(listOfWords[randomNumber]);
@@ -137,22 +136,37 @@ angular.module('st2forget.word-unscramble-game',
       this.model.Statement = listOfWords[randomNumber][0];
       this.model.Hint = listOfWords[randomNumber][1];
 
+      this.letterCount = this.model.Statement.length;
       this.draggableObjects = this.shuffeChars(); // shuffle char array
 
     };
 
-    var exitWordUnscramble = function () {
-        try {
-          if (Native && typeof Native == "function") {
-            Native("dataCallback", quizID);
-        }}
-        catch (err) {
-          //logError(err);
-          console.log("ERROR FUNCTION")
-        }
-      };
+    var windowResizeChange = function () {
+      this.letterWidth = this.windowsInnerWidth/(this.letterCount + 5) + 'px';
+      this.letterFontSize = this.windowsInnerWidth/(this.letterCount + 5) + 'px';
 
-    var init = function ($attrs, $scope, $element, $interval, $http, ngDialog) {
+      // console.log(this.letterWidth);
+      // console.log(this.letterFontSize);
+
+      this.sortableItemInner = {
+        'width': this.letterWidth,
+        'font-size': this.letterFontSize
+      };
+    };
+
+    var exitWordUnscramble = function () {
+      try {
+        if (Native && typeof Native == "function") {
+          Native("dataCallback", quizID);
+        }
+      }
+      catch (err) {
+        //logError(err);
+        console.log("ERROR FUNCTION")
+      }
+    };
+
+    var init = function ($attrs, $scope, $element, $interval, $http, $window, ngDialog) {
       /*// Declare $scope variable*/
       $scope.gameType = $attrs.gameType;
       $scope.isCorrect = false;
@@ -161,12 +175,22 @@ angular.module('st2forget.word-unscramble-game',
       $scope.ngDialog = ngDialog;
       $scope.directiveRootPath = $attrs.directiveRootPath;
       $scope.shuffleChars = shuffleChars;
+      $scope.letterCount = 0;
       $scope.model = {
         ID: null,
         Statement: null,
         Hint: null
-      }; // Get random data
+      };
       $scope.interval = $interval;
+      $scope.sortableItemInner = { // Defaull CSS for each letter
+        'width': '55px',
+        'font-size': '50px'
+      };
+
+      angular.element($window).bind('resize', function () {
+        $scope.windowsInnerWidth = $window.innerWidth;
+        $scope.windowResizeChange();
+      });
 
       /*Declare function for $scope*/
       $scope.shuffeChars = shuffeCharsFn;
@@ -178,6 +202,7 @@ angular.module('st2forget.word-unscramble-game',
       $scope.timeOverDialog = timeOverDialog;
       $scope.hintDiaglog = hintDiaglog;
       $scope.randomWords = randomWords;
+      $scope.windowResizeChange = windowResizeChange;
       $scope.exitWordUnscramble = exitWordUnscramble;
 
       $scope.onDropComplete = function () { // Change position
@@ -188,14 +213,15 @@ angular.module('st2forget.word-unscramble-game',
       $scope.randomWords(); // Change words
       $scope.hintMsg = $scope.model.Hint;
       $scope.draggableObjects = $scope.shuffeChars();
+
     };
 
     return {
       controllerAs: 'wordUnscrambleGame',
-      controller: ['$attrs', '$scope', '$element', '$interval', '$http', 'ngDialog', function ($attrs, $scope, $element, $interval, $http, ngDialog) {
+      controller: ['$attrs', '$scope', '$element', '$interval', '$http', '$window', 'ngDialog', function ($attrs, $scope, $element, $interval, $http, $window, ngDialog) {
         $scope.$on('WorldUnscrambleCtrlModelUpdated', function (event, data) {
           $scope.listOfWOrds = data;
-          init($attrs, $scope, $element, $interval, $http, ngDialog);
+          init($attrs, $scope, $element, $interval, $http, $window, ngDialog);
         });
       }],
       template: '<ng-include src="getTemplateUrl()"></ng-include>',

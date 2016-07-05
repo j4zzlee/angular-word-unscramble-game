@@ -7,7 +7,8 @@
 					<div class="game-container" on-drag-end="onDropComplete()">
 						<ul ng-sortable="{animation:150}">
 							<li ng-repeat="obj in draggableObjects track by $index">
-								<div class="sortable-item-inner">
+								<!--<div class="sortable-item-inner">-->
+								<div class="sortable-item-inner" ng-style="sortableItemInner">
                                   {{ obj }}
 								</div>
 							</li>
