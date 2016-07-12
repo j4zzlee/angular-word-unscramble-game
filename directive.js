@@ -143,14 +143,13 @@ angular.module('st2forget.word-unscramble-game',
 
     var windowResizeChange = function () {
       this.letterWidth = this.windowsInnerWidth/(this.letterCount + 5) + 'px';
-      this.letterFontSize = this.windowsInnerWidth/(this.letterCount + 5) + 'px';
 
       // console.log(this.letterWidth);
       // console.log(this.letterFontSize);
 
       this.sortableItemInner = {
-        'width': this.letterWidth,
-        'font-size': this.letterFontSize
+        'width': this.letterWidth
+        // 'font-size': this.letterFontSize
       };
     };
 
@@ -184,7 +183,7 @@ angular.module('st2forget.word-unscramble-game',
       $scope.interval = $interval;
       $scope.sortableItemInner = { // Defaull CSS for each letter
         'width': '55px',
-        'font-size': '50px'
+        // 'font-size': '50px'
       };
 
       angular.element($window).bind('resize', function () {

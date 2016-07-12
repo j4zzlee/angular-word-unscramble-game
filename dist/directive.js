@@ -31438,7 +31438,7 @@
 	'use strict';
 
 	angular.module('st2forget.word-unscramble-game', ['ng-sortable', 'ngDialog']).directive('wordUnscrambleGame', function () {
-	  var totalTime = 3000000,
+	  var totalTime = 30000,
 	      interval = null,
 	      shuffleChars = [],
 	      scoreIncrement = 1000;
@@ -31578,14 +31578,13 @@
 
 	  var windowResizeChange = function windowResizeChange() {
 	    this.letterWidth = this.windowsInnerWidth / (this.letterCount + 5) + 'px';
-	    this.letterFontSize = this.windowsInnerWidth / (this.letterCount + 5) + 'px';
 
 	    // console.log(this.letterWidth);
 	    // console.log(this.letterFontSize);
 
 	    this.sortableItemInner = {
-	      'width': this.letterWidth,
-	      'font-size': this.letterFontSize
+	      'width': this.letterWidth
+	      // 'font-size': this.letterFontSize
 	    };
 	  };
 
@@ -31617,10 +31616,10 @@
 	    };
 	    $scope.interval = $interval;
 	    $scope.sortableItemInner = { // Defaull CSS for each letter
-	      'width': '55px',
-	      'font-size': '50px'
+	      'width': '55px'
 	    };
 
+	    // 'font-size': '50px'
 	    angular.element($window).bind('resize', function () {
 	      $scope.windowsInnerWidth = $window.innerWidth;
 	      $scope.windowResizeChange();
