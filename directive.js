@@ -116,7 +116,7 @@ angular.module('st2forget.word-unscramble-game',
         template: 'hintId',
         className: 'ngdialog-theme-default',
         scope: this
-      }).then(function (value) {
+      }).then(function () {
           self.startTimer();
           console.log("Confirm");
         }, function (reason) {
@@ -144,12 +144,9 @@ angular.module('st2forget.word-unscramble-game',
     var windowResizeChange = function () {
       this.letterWidth = this.windowsInnerWidth/(this.letterCount + 5) + 'px';
 
-      // console.log(this.letterWidth);
-      // console.log(this.letterFontSize);
 
       this.sortableItemInner = {
         'width': this.letterWidth
-        // 'font-size': this.letterFontSize
       };
     };
 
@@ -174,22 +171,15 @@ angular.module('st2forget.word-unscramble-game',
       $scope.ngDialog = ngDialog;
       $scope.directiveRootPath = $attrs.directiveRootPath;
       $scope.shuffleChars = shuffleChars;
-      $scope.letterCount = 0;
+
+      $scope.interval = $interval;
+
       $scope.model = {
         ID: null,
         Statement: null,
         Hint: null
       };
-      $scope.interval = $interval;
-      $scope.sortableItemInner = { // Defaull CSS for each letter
-        'width': '55px',
-        // 'font-size': '50px'
-      };
 
-      angular.element($window).bind('resize', function () {
-        $scope.windowsInnerWidth = $window.innerWidth;
-        $scope.windowResizeChange();
-      });
 
       /*Declare function for $scope*/
       $scope.shuffeChars = shuffeCharsFn;
@@ -213,6 +203,16 @@ angular.module('st2forget.word-unscramble-game',
       $scope.hintMsg = $scope.model.Hint;
       $scope.draggableObjects = $scope.shuffeChars();
 
+      /*Edit letter size*/
+      $scope.letterWidth = $window.innerWidth/($scope.letterCount + 5) + 'px';
+      $scope.sortableItemInner = { // Defaull CSS for each letter
+        'width': $scope.letterWidth
+      };
+
+      angular.element($window).bind('resize', function () {
+        $scope.windowsInnerWidth = $window.innerWidth;
+        $scope.windowResizeChange();
+      });
     };
 
     return {
@@ -223,7 +223,7 @@ angular.module('st2forget.word-unscramble-game',
           init($attrs, $scope, $element, $interval, $http, $window, ngDialog);
         });
       }],
-      template: '<ng-include src="getTemplateUrl()"></ng-include>',
+      template: '<ng-include src="getTemplateUrl()"> </ng-include>',
       link: link
     };
   }

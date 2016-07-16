@@ -3,9 +3,7 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-.scroll {
-  background-color: #a4b357;
-  /* Old Browsers */
+.word-unscramble-div {
   background-image: -owg-linear-gradient(left, #a4b357 0%, #d4ecd6 0%, #d6edd8 100%);
   background-image: -webkit-linear-gradient(left, #a4b357 0%, #d4ecd6 0%, #d6edd8 100%);
   background-image: -moz-linear-gradient(left, #a4b357 0%, #d4ecd6 0%, #d6edd8 100%);

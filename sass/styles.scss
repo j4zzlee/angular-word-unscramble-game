@@ -4,8 +4,7 @@
   @include box-sizing(border-box);
 }
 
-.scroll {
-  background-color: rgb(164, 179, 87); /* Old Browsers */
+.word-unscramble-div {
   @include background-image(linear-gradient(left, rgb(164, 179, 87) 0%, rgb(212, 236, 214) 0%, rgb(214, 237, 216) 100%));}
 
 .button {
