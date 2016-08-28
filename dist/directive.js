@@ -164,8 +164,8 @@
 
 							evt.from.insertBefore(evt.item, nextSibling); // revert element
 						} else {
-								items.splice(newIndex, 0, items.splice(oldIndex, 1)[0]);
-							}
+							items.splice(newIndex, 0, items.splice(oldIndex, 1)[0]);
+						}
 
 						scope.$apply();
 					}
@@ -1004,7 +1004,7 @@
 	   */
 	  function isElement(node) {
 	    return !!(node && (node.nodeName // we are a direct element
-	     || node.prop && node.attr && node.find)); // we have an on and find method part of jQuery API
+	    || node.prop && node.attr && node.find)); // we have an on and find method part of jQuery API
 	  }
 
 	  /**
@@ -6104,12 +6104,12 @@
 	        return self;
 	        // getter
 	      } else {
-	          // - pendingLocation is needed as browsers don't allow to read out
-	          //   the new location.href if a reload happened or if there is a bug like in iOS 9 (see
-	          //   https://openradar.appspot.com/22186109).
-	          // - the replacement is a workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=407172
-	          return pendingLocation || location.href.replace(/%27/g, "'");
-	        }
+	        // - pendingLocation is needed as browsers don't allow to read out
+	        //   the new location.href if a reload happened or if there is a bug like in iOS 9 (see
+	        //   https://openradar.appspot.com/22186109).
+	        // - the replacement is a workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=407172
+	        return pendingLocation || location.href.replace(/%27/g, "'");
+	      }
 	    };
 
 	    /**
@@ -9146,9 +9146,9 @@
 	            //Otherwise attempt getting the controller from elementControllers in case
 	            //the element is transcluded (and has no data) and to avoid .data if possible
 	          } else {
-	              value = elementControllers && elementControllers[name];
-	              value = value && value.instance;
-	            }
+	            value = elementControllers && elementControllers[name];
+	            value = value && value.instance;
+	          }
 
 	          if (!value) {
 	            var dataName = '$' + name + 'Controller';
@@ -9310,9 +9310,9 @@
 	            // You will get an "InvalidCharacterError: DOM Exception 5" error if you
 	            // have an attribute like "has-own-property" or "data-has-own-property", etc.
 	          } else if (key.charAt(0) != '$' && !dst.hasOwnProperty(key)) {
-	              dst[key] = value;
-	              dstAttr[key] = srcAttr[key];
-	            }
+	            dst[key] = value;
+	            dstAttr[key] = srcAttr[key];
+	          }
 	        });
 	      }
 
@@ -13390,6 +13390,7 @@
 	  //
 	  // See https://docs.angularjs.org/guide/security
 
+
 	  function ensureSafeMemberName(name, fullExpression) {
 	    if (name === "__defineGetter__" || name === "__defineSetter__" || name === "__lookupGetter__" || name === "__lookupSetter__" || name === "__proto__") {
 	      throw $parseMinErr('isecfld', 'Attempting to access a disallowed field in Angular expressions! ' + 'Expression: {0}', fullExpression);
@@ -13450,7 +13451,7 @@
 
 	  function ensureSafeAssignContext(obj, fullExpression) {
 	    if (obj) {
-	      if (obj === 0..constructor || obj === false.constructor || obj === ''.constructor || obj === {}.constructor || obj === [].constructor || obj === Function.constructor) {
+	      if (obj === 0 .constructor || obj === false.constructor || obj === ''.constructor || obj === {}.constructor || obj === [].constructor || obj === Function.constructor) {
 	        throw $parseMinErr('isecaf', 'Assigning to a constructor is disallowed! Expression: {0}', fullExpression);
 	      }
 	    }
@@ -13463,6 +13464,7 @@
 	  var ESCAPE = { "n": "\n", "f": "\f", "r": "\r", "t": "\t", "v": "\v", "'": "'", '"': '"' };
 
 	  /////////////////////////////////////////
+
 
 	  /**
 	   * @constructor
@@ -16717,7 +16719,7 @@
 
 	            // `break traverseScopesLoop;` takes us to here
 
-	            if ((dirty || asyncQueue.length) && ! ttl--) {
+	            if ((dirty || asyncQueue.length) && !ttl--) {
 	              clearPhase();
 	              throw $rootScopeMinErr('infdig', '{0} $digest() iterations reached. Aborting!\n' + 'Watchers fired in the last 5 iterations: {1}', TTL, watchLog);
 	            }
@@ -27239,6 +27241,7 @@
 	  // 9: track by expression
 	  // jshint maxlen: 100
 
+
 	  var ngOptionsDirective = ['$compile', '$parse', function ($compile, $parse) {
 
 	    function parseOptionsExpression(optionsExp, selectElement, scope) {
@@ -27573,6 +27576,7 @@
 	      scope.$watchCollection(ngOptions.getWatchables, updateOptions);
 
 	      // ------------------------------------------------------------------ //
+
 
 	      function updateOptionElement(option, element) {
 	        option.element = element;
@@ -29419,13 +29423,13 @@
 	        $element.val(value);
 	        if (value === '') self.emptyOption.prop('selected', true); // to make IE9 happy
 	      } else {
-	          if (value == null && self.emptyOption) {
-	            self.removeUnknownOption();
-	            $element.val('');
-	          } else {
-	            self.renderUnknownOption(value);
-	          }
+	        if (value == null && self.emptyOption) {
+	          self.removeUnknownOption();
+	          $element.val('');
+	        } else {
+	          self.renderUnknownOption(value);
 	        }
+	      }
 	    };
 
 	    // Tell the select control that an option, with the given value, has been added
@@ -30308,9 +30312,9 @@
 		} else if (typeof Package !== "undefined") {
 			Sortable = factory(); // export for Meteor.js
 		} else {
-				/* jshint sub:true */
-				window["Sortable"] = factory();
-			}
+			/* jshint sub:true */
+			window["Sortable"] = factory();
+		}
 	})(function () {
 		"use strict";
 
@@ -30542,20 +30546,20 @@
 						return; // cancel dnd
 					}
 				} else if (filter) {
-						filter = filter.split(',').some(function (criteria) {
-							criteria = _closest(originalTarget, criteria.trim(), el);
+					filter = filter.split(',').some(function (criteria) {
+						criteria = _closest(originalTarget, criteria.trim(), el);
 
-							if (criteria) {
-								_dispatchEvent(_this, criteria, 'filter', target, el, oldIndex);
-								return true;
-							}
-						});
-
-						if (filter) {
-							evt.preventDefault();
-							return; // cancel dnd
+						if (criteria) {
+							_dispatchEvent(_this, criteria, 'filter', target, el, oldIndex);
+							return true;
 						}
+					});
+
+					if (filter) {
+						evt.preventDefault();
+						return; // cancel dnd
 					}
+				}
 
 				if (options.handle && !_closest(originalTarget, options.handle, el)) {
 					return;
@@ -31478,7 +31482,6 @@
 	  };
 
 	  var replayTimer = function replayTimer() {
-	    // console.log("Mode: Reset Timer");
 	    this.countDown = totalTime;
 	    interval = null;
 	    this.startTimer();
@@ -31578,7 +31581,6 @@
 
 	  var windowResizeChange = function windowResizeChange() {
 	    this.letterWidth = this.windowsInnerWidth / (this.letterCount + 5) + 'px';
-
 	    this.sortableItemInner = {
 	      'width': this.letterWidth
 	    };
@@ -31604,7 +31606,6 @@
 	    $scope.ngDialog = ngDialog;
 	    $scope.directiveRootPath = $attrs.directiveRootPath;
 	    $scope.shuffleChars = shuffleChars;
-
 	    $scope.interval = $interval;
 
 	    $scope.model = {

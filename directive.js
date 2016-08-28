@@ -41,7 +41,6 @@ angular.module('st2forget.word-unscramble-game',
     };
 
     var replayTimer = function () {
-      // console.log("Mode: Reset Timer");
       this.countDown = totalTime;
       interval = null;
       this.startTimer();
@@ -52,7 +51,6 @@ angular.module('st2forget.word-unscramble-game',
       var self = this;
       this.stopTimer();
       this.popupTitle = 'Time up!';
-      // this.randomWords();
       this.draggableObjects = this.shuffeChars();
 
       if (this.countDown <= 0) {
@@ -143,8 +141,6 @@ angular.module('st2forget.word-unscramble-game',
 
     var windowResizeChange = function () {
       this.letterWidth = this.windowsInnerWidth/(this.letterCount + 5) + 'px';
-
-
       this.sortableItemInner = {
         'width': this.letterWidth
       };
@@ -171,7 +167,6 @@ angular.module('st2forget.word-unscramble-game',
       $scope.ngDialog = ngDialog;
       $scope.directiveRootPath = $attrs.directiveRootPath;
       $scope.shuffleChars = shuffleChars;
-
       $scope.interval = $interval;
 
       $scope.model = {
@@ -193,6 +188,7 @@ angular.module('st2forget.word-unscramble-game',
       $scope.randomWords = randomWords;
       $scope.windowResizeChange = windowResizeChange;
       $scope.exitWordUnscramble = exitWordUnscramble;
+
 
       $scope.onDropComplete = function () { // Change position
         shuffleChars = $scope.draggableObjects.join('');
