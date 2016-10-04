@@ -31493,7 +31493,6 @@
 	    var self = this;
 	    this.stopTimer();
 	    this.popupTitle = 'Time up!';
-	    // this.randomWords();
 	    this.draggableObjects = this.shuffeChars();
 
 	    if (this.countDown <= 0) {

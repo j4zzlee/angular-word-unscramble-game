@@ -2,6 +2,23 @@
 	<!--Start Section-->
 	<div class="start-screen">
 		<div ng-show="!gameVisible">
+
+			<div class="buttonHolder">
+				<table width="100%" class="actions">
+					<tr>
+						<td width="33.3%" colspan="2">
+							<h3>Score: <span style="color:#d43f3a; font-size: 20px"> {{scoreMark}} </span>
+			  </h3>
+						</td>
+						<td width="33.3%" colspan="2" rowspan="2" class="valign-center">
+						</td>
+						<td width="33.3%" colspan="2">
+							<h3>Time: <span style="color:#d43f3a; font-size: 20px"> {{countDown}} </span> </h3>
+						</td>
+					</tr>
+				</table>
+			</div>
+
 			<div class="word-unscramble-container">
 				<div class="game-body">
 					<div class="game-container" on-drag-end="onDropComplete()">
@@ -16,6 +33,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="buttonHolder">
 				<table width="100%" class="actions">
 					<tr>
@@ -24,35 +42,11 @@
 						</td>
 						<td colspan="3">
 							<button ng-click="submitDialog()" class="button button-lg">SUBMIT</button>
-
-						</td>
-					</tr>
-					<tr>
-						<td width="33.3%" colspan="2">
-							<h3>Score:</h3>
-						</td>
-						<td width="33.3%" colspan="2" rowspan="2" class="valign-center">
-							<button class="button button-lg" ng-click="exitWordUnscramble()">
-								Exit
-							</button>
-						</td>
-						<td width="33.3%" colspan="2">
-							<h3>
-								Time:
-							</h3>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-
-							<span style="color:#d43f3a; font-size: 20px"> {{scoreMark}} </span>
-						</td>
-						<td colspan="2">
-							<span style="color:#d43f3a; font-size: 20px"> {{countDown}} </span>
 						</td>
 					</tr>
 				</table>
 			</div>
+
 			<!--TimeOver modal-->
 			<script type="text/ng-template" id="timeOverId">
 				<h2> {{ popupTitle }}</h2>
