@@ -97,7 +97,7 @@ table tr td {
             margin: 2px;
             background-color: #f9edb4;
             color: black;
-            padding: 5px;
+            padding: 10px 10px 10px 10px;
             font-size: 5vw;
             line-height: 50px;
             cursor: pointer; }
