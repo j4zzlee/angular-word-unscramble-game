@@ -4,7 +4,7 @@
   box-sizing: border-box; }
 
 .button {
-  -webkit-box-shadow: 0px 10px 14px -7px #276873;
+  -webkit-box-shadow: 0px 10px 14px -7px #276873 ;
   -moz-box-shadow: 0px 10px 14px -7px #276873;
   box-shadow: 0px 10px 14px -7px #276873;
   background: -owg-top, -owg-#599bb3 5%, -owg-#408c99 100%;
